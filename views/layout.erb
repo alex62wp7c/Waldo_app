@@ -1,0 +1,36 @@
+<% mywaldo = Mapping::MYWALDOS.sample %>
+<!doctype html>
+<html>
+  <head>
+    <title>Sinatra Single-Serve</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <style>
+      div {
+        width: 1024px;
+        height: 768px;
+        background-image: url("img/waldos/<%= mywaldo[0]%>") ;
+      }
+      #waldo {
+        position:absolute;
+        top: <%= mywaldo[2]%>;
+        left: <%= mywaldo[1]%>;
+        padding: <%= mywaldo[3]%> <%= mywaldo[4]%>;
+      }
+    </style>
+    <script language="javascript" type="text/javascript">
+    function playSound(soundfile) {
+    document.getElementById("dummy").innerHTML=
+    "<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+    }
+    </script>
+  </head>
+  <body>
+    <div>
+      <span id="dummy">
+        <a id="waldo" onclick="playSound('audio/goodjob.mp3');" href="#" >Z</a>
+        <!-- <a id="waldo" href="">Z</a> -->
+      </span>
+    </div>
+    <%= yield %> 
+  </body>
+</html>
